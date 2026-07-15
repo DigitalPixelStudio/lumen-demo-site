@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d0f1a" />
+  <meta name="description" content="Lumen — a digital craft studio building fast, beautiful, accessible web experiences." />
+  <title>Lumen · Digital Craft Studio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navbar -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__brand" aria-label="Lumen home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text">Lumen</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#stats">Impact</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="currentColor"/></svg>
+      </button>
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <span class="blob blob--3"></span>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal">✦ Digital Craft Studio</p>
+      <h1 class="hero__title">
+        <span class="reveal" style="--d:.05s">We build</span>
+        <span class="reveal gradient-text" style="--d:.15s" id="typed">lightning-fast</span>
+        <span class="reveal" style="--d:.25s">web experiences.</span>
+      </h1>
+      <p class="hero__sub reveal" style="--d:.35s">
+        Lumen blends design, motion, and engineering into products people love to use — on every screen, in every theme.
+      </p>
+      <div class="hero__cta reveal" style="--d:.45s">
+        <a href="#work" class="btn btn--primary">See our work</a>
+        <a href="#contact" class="btn btn--ghost">Start a project</a>
+      </div>
+    </div>
+    <a href="#work" class="hero__scroll" aria-label="Scroll down">
+      <span class="mouse"><span class="wheel"></span></span>
+    </a>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Design</span><span>•</span><span>Motion</span><span>•</span><span>Performance</span><span>•</span><span>Accessibility</span><span>•</span><span>PWA</span><span>•</span>
+      <span>Design</span><span>•</span><span>Motion</span><span>•</span><span>Performance</span><span>•</span><span>Accessibility</span><span>•</span><span>PWA</span><span>•</span>
+    </div>
+  </div>
+
+  <!-- Work -->
+  <section class="section" id="work">
+    <div class="section__head">
+      <p class="section__eyebrow reveal">Selected work</p>
+      <h2 class="section__title reveal">Things we've shipped</h2>
+    </div>
+    <div class="cards">
+      <article class="card reveal" style="--d:.05s">
+        <div class="card__media card__media--a"><span class="card__tag">Fintech</span></div>
+        <h3>Nova Pay</h3>
+        <p>A banking dashboard that loads in under a second and feels alive on every interaction.</p>
+      </article>
+      <article class="card reveal" style="--d:.15s">
+        <div class="card__media card__media--b"><span class="card__tag">Health</span></div>
+        <h3>Pulse</h3>
+        <p>A wellness companion with offline-first sync and buttery-smooth animations.</p>
+      </article>
+      <article class="card reveal" style="--d:.25s">
+        <div class="card__media card__media--c"><span class="card__tag">Commerce</span></div>
+        <h3>Market</h3>
+        <p>A storefront PWA that turns browsers into buyers — installable, fast, reliable.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--alt" id="services">
+    <div class="section__head">
+      <p class="section__eyebrow reveal">What we do</p>
+      <h2 class="section__title reveal">Services</h2>
+    </div>
+    <div class="services">
+      <div class="service reveal" style="--d:.05s">
+        <span class="service__icon">◈</span>
+        <h3>Interface design</h3>
+        <p>Systems, not screens. Token-driven, responsive, and themeable by default.</p>
+      </div>
+      <div class="service reveal" style="--d:.12s">
+        <span class="service__icon">✦</span>
+        <h3>Motion &amp; interaction</h3>
+        <p>Animations that guide, not distract — built on the Web Animations API.</p>
+      </div>
+      <div class="service reveal" style="--d:.19s">
+        <span class="service__icon">⚡</span>
+        <h3>Performance</h3>
+        <p>Core Web Vitals in the green. Edge-cached, lazy, and lean.</p>
+      </div>
+      <div class="service reveal" style="--d:.26s">
+        <span class="service__icon">⬡</span>
+        <h3>PWA &amp; offline</h3>
+        <p>Installable apps with service workers that survive the subway.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section" id="gallery">
+    <div class="section__head">
+      <p class="section__eyebrow reveal">Visual playground</p>
+      <h2 class="section__title reveal">Gallery</h2>
+    </div>
+    <div class="gallery">
+      <figure class="gallery__item g--tall reveal" style="--d:.05s"><div class="art art--1"><span>Aurora</span></div></figure>
+      <figure class="gallery__item reveal" style="--d:.1s"><div class="art art--2"><span>Prism</span></div></figure>
+      <figure class="gallery__item reveal" style="--d:.15s"><div class="art art--3"><span>Orbit</span></div></figure>
+      <figure class="gallery__item g--wide reveal" style="--d:.2s"><div class="art art--4"><span>Horizon</span></div></figure>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section--alt" id="stats">
+    <div class="section__head">
+      <p class="section__eyebrow reveal">By the numbers</p>
+      <h2 class="section__title reveal">Impact</h2>
+    </div>
+    <div class="stats">
+      <div class="stat reveal" style="--d:.05s"><span class="stat__num" data-target="248" data-suffix="+">0</span><p>Projects shipped</p></div>
+      <div class="stat reveal" style="--d:.12s"><span class="stat__num" data-target="99" data-suffix="%">0</span><p>Lighthouse avg</p></div>
+      <div class="stat reveal" style="--d:.19s"><span class="stat__num" data-target="36" data-suffix="ms">0</span><p>Median TTI</p></div>
+      <div class="stat reveal" style="--d:.26s"><span class="stat__num" data-target="58" data-suffix="">0</span><p>Happy clients</p></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <div class="section__head">
+      <p class="section__eyebrow reveal">Say hello</p>
+      <h2 class="section__title reveal">Let's build something</h2>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__info reveal" style="--d:.05s">
+        <p>Prefer chat? Reach us instantly on WhatsApp, or find the studio on the map.</p>
+        <a class="wa-btn" href="https://wa.me/15551234567?text=Hi%20Lumen%2C%20I%27d%20like%20to%20start%20a%20project%20%F0%9F%9A%80" target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.7 1.9 6.6L4 29l7.6-2c1.9 1 4.1 1.6 6.4 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.6c-2 0-3.9-.5-5.6-1.5l-.4-.2-4 1 1.1-3.9-.3-.4C6.7 18.2 6 16.6 6 15c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10zm5.5-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <ul class="contact__list">
+          <li><strong>Email</strong> hello@lumen.studio</li>
+          <li><strong>Hours</strong> Mon–Fri · 9–6</li>
+        </ul>
+      </div>
+
+      <div class="contact__map reveal" style="--d:.12s">
+        <div id="map" role="img" aria-label="Map showing the Lumen studio location"></div>
+        <p class="map__caption">Lumen Studio · 1 Lumen Lane, San Francisco</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="brand-text">Lumen</span>
+      <p>Built as a demo · showcasing themes, motion, PWA, maps &amp; more.</p>
+      <button class="install-btn" id="installBtn" hidden>Install app</button>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
