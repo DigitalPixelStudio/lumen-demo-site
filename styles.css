@@ -176,7 +176,10 @@ img, svg { display: block; max-width: 100%; }
 .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .service { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: transform .35s var(--ease), background .35s; }
 .service:hover { transform: translateY(-6px); background: var(--surface-2); }
-.service__icon { font-size: 1.8rem; color: var(--accent); display: block; margin-bottom: 14px; }
+.service__icon { color: var(--accent); display: block; margin-bottom: 14px; }
+.service__icon svg { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s var(--ease); }
+.service:hover .service__icon svg { transform: scale(1.12) rotate(-6deg); }
+.eyebrow-star { width: 14px; height: 14px; fill: currentColor; vertical-align: -2px; margin-right: 4px; }
 .service h3 { margin: 0 0 8px; font-size: 1.15rem; }
 .service p { margin: 0; color: var(--muted); font-size: .92rem; }
 
