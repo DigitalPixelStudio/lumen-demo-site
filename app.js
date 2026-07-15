@@ -8,20 +8,28 @@
 
   /* ---------- Theme ---------- */
   const root = document.documentElement;
+  const THEMES = ["dark", "light", "crimson"];
   const stored = localStorage.getItem("lumen-theme");
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-  const initial = stored || (prefersLight ? "light" : "dark");
+  const initial = stored || (prefersLight ? "light" : "crimson");
   applyTheme(initial);
 
   function applyTheme(theme) {
+    if (!THEMES.includes(theme)) theme = "crimson";
     root.setAttribute("data-theme", theme);
     const meta = $('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "light" ? "#f6f7fb" : "#0d0f1a");
+    const colors = { dark: "#0d0f1a", light: "#f6f7fb", crimson: "#0a0304" };
+    if (meta) meta.setAttribute("content", colors[theme]);
+    $$(".theme-switch button").forEach((b) =>
+      b.classList.toggle("active", b.dataset.setTheme === theme)
+    );
   }
-  $("#themeToggle").addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    applyTheme(next);
-    localStorage.setItem("lumen-theme", next);
+  $$(".theme-switch button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const t = btn.dataset.setTheme;
+      applyTheme(t);
+      localStorage.setItem("lumen-theme", t);
+    });
   });
 
   /* ---------- Nav: scroll state + burger ---------- */
@@ -132,4 +140,29 @@
   }
 
   onScroll();
+
+  /* ---------- Cursor glow ---------- */
+  const glow = $("#cursorGlow");
+  if (glow && matchMedia("(hover: hover)").matches) {
+    window.addEventListener("pointermove", (e) => {
+      glow.classList.add("show");
+      glow.style.left = e.clientX + "px";
+      glow.style.top = e.clientY + "px";
+    }, { passive: true });
+    window.addEventListener("pointerleave", () => glow.classList.remove("show"));
+  }
+
+  /* ---------- 3D card tilt ---------- */
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const tiltEls = $$(".card, .service");
+    tiltEls.forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `translateY(-8px) rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg)`;
+      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+  }
 })();

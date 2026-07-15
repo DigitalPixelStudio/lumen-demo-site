@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="crimson">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0d0f1a" />
+  <meta name="theme-color" content="#0a0304" />
   <meta name="description" content="Lumen — a digital craft studio building fast, beautiful, accessible web experiences." />
   <title>Lumen · Digital Craft Studio</title>
 
@@ -42,10 +42,11 @@
     </nav>
 
     <div class="nav__actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
-        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></g></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" fill="currentColor"/></svg>
-      </button>
+      <div class="theme-switch" role="group" aria-label="Choose theme">
+        <button data-set-theme="dark" title="Dark" aria-label="Dark theme"><span class="swatch swatch--dark"></span></button>
+        <button data-set-theme="light" title="Light" aria-label="Light theme"><span class="swatch swatch--light"></span></button>
+        <button data-set-theme="crimson" class="active" title="Crimson" aria-label="Crimson theme"><span class="swatch swatch--crimson"></span></button>
+      </div>
       <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -64,7 +65,7 @@
       <p class="hero__eyebrow reveal">✦ Digital Craft Studio</p>
       <h1 class="hero__title">
         <span class="reveal" style="--d:.05s">We build</span>
-        <span class="reveal gradient-text" style="--d:.15s" id="typed">lightning-fast</span>
+        <span class="reveal gradient-text breathing" style="--d:.15s" id="typed">lightning-fast</span>
         <span class="reveal" style="--d:.25s">web experiences.</span>
       </h1>
       <p class="hero__sub reveal" style="--d:.35s">
@@ -92,7 +93,7 @@
   <section class="section" id="work">
     <div class="section__head">
       <p class="section__eyebrow reveal">Selected work</p>
-      <h2 class="section__title reveal">Things we've shipped</h2>
+      <h2 class="section__title reveal breathing">Things we've shipped</h2>
     </div>
     <div class="cards">
       <article class="card reveal" style="--d:.05s">
@@ -117,7 +118,7 @@
   <section class="section section--alt" id="services">
     <div class="section__head">
       <p class="section__eyebrow reveal">What we do</p>
-      <h2 class="section__title reveal">Services</h2>
+      <h2 class="section__title reveal breathing">Services</h2>
     </div>
     <div class="services">
       <div class="service reveal" style="--d:.05s">
@@ -147,7 +148,7 @@
   <section class="section" id="gallery">
     <div class="section__head">
       <p class="section__eyebrow reveal">Visual playground</p>
-      <h2 class="section__title reveal">Gallery</h2>
+      <h2 class="section__title reveal breathing">Gallery</h2>
     </div>
     <div class="gallery">
       <figure class="gallery__item g--tall reveal" style="--d:.05s"><div class="art art--1"><span>Aurora</span></div></figure>
@@ -161,7 +162,7 @@
   <section class="section section--alt" id="stats">
     <div class="section__head">
       <p class="section__eyebrow reveal">By the numbers</p>
-      <h2 class="section__title reveal">Impact</h2>
+      <h2 class="section__title reveal breathing">Impact</h2>
     </div>
     <div class="stats">
       <div class="stat reveal" style="--d:.05s"><span class="stat__num" data-target="248" data-suffix="+">0</span><p>Projects shipped</p></div>
@@ -175,7 +176,7 @@
   <section class="section contact" id="contact">
     <div class="section__head">
       <p class="section__eyebrow reveal">Say hello</p>
-      <h2 class="section__title reveal">Let's build something</h2>
+      <h2 class="section__title reveal breathing">Let's build something</h2>
     </div>
 
     <div class="contact__grid">
@@ -207,6 +208,9 @@
   </footer>
 
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="float-badge" aria-hidden="true"><span class="dot"></span> Built with Lumen</div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

@@ -42,6 +42,23 @@
   color-scheme: light;
 }
 
+/* ---------- Crimson (black & red) ---------- */
+[data-theme="crimson"] {
+  --bg: #0a0304;
+  --bg-alt: #120406;
+  --surface: rgba(255, 255, 255, .035);
+  --surface-2: rgba(255, 45, 61, .08);
+  --border: rgba(255, 45, 61, .22);
+  --text: #fdeef0;
+  --muted: #c98a90;
+  --accent: #ff2d3d;
+  --accent-2: #ff5e3a;
+  --accent-3: #ff2d6b;
+  --shadow: 0 20px 60px rgba(120, 0, 10, .5);
+  --grad: linear-gradient(120deg, #ff2d3d, #ff5e3a);
+  color-scheme: dark;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -207,6 +224,76 @@ img, svg { display: block; max-width: 100%; }
 /* ---------- Reveal animation ---------- */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: var(--d, 0s); }
 .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Theme switcher ---------- */
+.theme-switch { display: flex; gap: 6px; padding: 5px; border: 1px solid var(--border); background: var(--surface); border-radius: 999px; }
+.theme-switch button { width: 30px; height: 30px; border: 0; background: transparent; border-radius: 50%; cursor: pointer; display: grid; place-items: center; transition: transform .25s var(--ease); }
+.theme-switch button:hover { transform: scale(1.15); }
+.theme-switch button.active { box-shadow: 0 0 0 2px var(--accent); }
+.swatch { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); }
+.swatch--dark { background: #0d0f1a; }
+.swatch--light { background: #f6f7fb; }
+.swatch--crimson { background: linear-gradient(120deg, #ff2d3d, #ff5e3a); }
+
+/* ---------- Breathing font effect ---------- */
+.breathing { animation: breathe 3.4s ease-in-out infinite; }
+@keyframes breathe {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); opacity: .92; }
+  50%      { transform: scale(1.035); filter: drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 65%, transparent)); opacity: 1; }
+}
+.gradient-text.breathing {
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  animation: breathe 3.4s ease-in-out infinite, shimmer 6s linear infinite;
+}
+@keyframes shimmer { to { background-position: 220% 50%; } }
+
+/* ---------- Cursor glow ---------- */
+.cursor-glow {
+  position: fixed; top: 0; left: 0; width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 65%);
+  transform: translate(-50%, -50%); pointer-events: none; z-index: 60; mix-blend-mode: screen;
+  transition: opacity .3s; opacity: 0;
+}
+@media (hover: hover) { .cursor-glow.show { opacity: 1; } }
+
+/* ---------- Button shimmer ---------- */
+.btn--primary { position: relative; overflow: hidden; }
+.btn--primary::after {
+  content: ""; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
+  transform: skewX(-18deg); animation: sweep 3.6s ease-in-out infinite;
+}
+@keyframes sweep { 0%, 60% { left: -120%; } 100% { left: 140%; } }
+
+/* ---------- Section title underline draw ---------- */
+.section__title { display: inline-block; position: relative; padding-bottom: 10px; }
+.section__title::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%;
+  background: var(--grad); transform: scaleX(0); transform-origin: left; border-radius: 3px;
+  animation: draw 1s var(--ease) forwards; animation-delay: .1s;
+}
+@keyframes draw { to { transform: scaleX(1); } }
+
+/* ---------- 3D tilt cards ---------- */
+.cards, .services { perspective: 1000px; }
+.card, .service { transform-style: preserve-3d; will-change: transform; }
+.card .card__tag, .card h3, .card p, .service__icon, .service h3, .service p { transform: translateZ(30px); }
+
+/* ---------- Floating badge ---------- */
+.float-badge {
+  position: fixed; left: 22px; bottom: 22px; z-index: 90; display: flex; align-items: center; gap: 8px;
+  background: var(--grad); color: #fff; padding: 9px 15px; border-radius: 999px; font-family: var(--font-display);
+  font-weight: 600; font-size: .82rem; box-shadow: 0 10px 26px color-mix(in srgb, var(--accent) 45%, transparent);
+  animation: bob 3s ease-in-out infinite;
+}
+.float-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.4s infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+/* ---------- Split-text reveal for hero ---------- */
+.char { display: inline-block; opacity: 0; transform: translateY(18px) rotateX(-40deg); animation: charIn .6s var(--ease) forwards; }
+@keyframes charIn { to { opacity: 1; transform: none; } }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
